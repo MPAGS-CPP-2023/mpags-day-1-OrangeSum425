@@ -1,7 +1,15 @@
 #include <iostream>
 #include <string>
-int main()
+#include <vector>
+
+int main(int argc, char* argv[])
 {
+  const std::vector<std::string> cmdLineArgs { argv, argv+argc };
+    for (int i = 1; i < argc; i++) {
+        std::cout << "Argument " << i << ": " << argv[i] << std::endl;
+    }
+
+  //variables
   char in_char{'x'};
   std::string out_str{""};
 
@@ -11,6 +19,7 @@ int main()
     if(std::isalpha(in_char))
     {
       out_str+=std::toupper(in_char);
+      continue;
     }
 
     switch (in_char)
