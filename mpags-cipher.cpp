@@ -4,6 +4,15 @@
 
 int main(int argc, char* argv[])
 {
+  for (int i = 1; i < argc; i++) {
+        std::string arg = argv[i];
+        if (arg == "-h" || arg == "--help") {
+            std::cout << "Help message: Here is a program for the day 1 course exercise 7" << std::endl;
+            std::cout << "Input the password, then it will be converted to upper letter." << std::endl;
+            std::cout << "Usage: " << argv[0] << " [options] [arguments]" << std::endl;
+            return 0; 
+        }
+  }
   const std::vector<std::string> cmdLineArgs { argv, argv+argc };
     for (int i = 1; i < argc; i++) {
         std::cout << "Argument " << i << ": " << argv[i] << std::endl;
