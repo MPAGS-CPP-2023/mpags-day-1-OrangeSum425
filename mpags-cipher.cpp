@@ -4,6 +4,10 @@
 
 int main(int argc, char* argv[])
 {
+  std::string inputFileName;
+  std::string outputFileName;
+  const std::vector<std::string> cmdLineArgs { argv, argv+argc };
+
   for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
         if (arg == "-h" || arg == "--help") {
@@ -12,11 +16,33 @@ int main(int argc, char* argv[])
             std::cout << "Usage: " << argv[0] << " [options] [arguments]" << std::endl;
             return 0; 
         }
+        else if(arg == "--version"){
+          std::cout << "Program version: 0.1.0 (For the day 1 course)." << std::endl;
+          return 0;
+        }
+        else if(arg == "-i"){ if (i + 1 < argc) {
+                inputFileName = argv[i + 1];
+                std::cout << "Input file: " << inputFileName << std::endl;
+                i++;  
+            } else {
+                std::cerr << "Error: -i option requires an input file." << std::endl;
+                return 1;
+            }}
+        else if(arg == "-o"){ if (i + 1 < argc) {
+                outputFileName = argv[i + 1];
+                std::cout << "Output file: " << outputFileName << std::endl;
+                i++;  
+            } else {
+                std::cerr << "Error: -o option requires an output file." << std::endl;
+                return 1;
+            }       
+        }
+        else{
+          std::cout << "Argument " << i << ": " << argv[i] << std::endl; //If no option
+        }
   }
-  const std::vector<std::string> cmdLineArgs { argv, argv+argc };
-    for (int i = 1; i < argc; i++) {
-        std::cout << "Argument " << i << ": " << argv[i] << std::endl;
-    }
+  
+
 
   //variables
   char in_char{'x'};
